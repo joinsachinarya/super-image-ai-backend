@@ -18,9 +18,8 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 10
     }
-
 })
 
 
-const userModal = mongoose.model.user || mongoose.model("user", userSchema)
+const userModal = mongoose.models.user || mongoose.model("user", userSchema)
 module.exports = userModal;

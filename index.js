@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const dotenv = require("dotenv")
 const mongoDB = require("./config/mongodb")
+const userRouter = require("./router/userRouter")
 
 
 
@@ -13,13 +14,17 @@ app.use(express.json())
 app.use(cors({
     origin: "*"
 }))
+
+
 async function callDB() {
     await mongoDB()
 }
 callDB()
 
-app.get("/", (req, res) => {
-    res.send("I'm rich")
+
+app.use('/api/user', userRouter);
+app.get('/hi', (req, res)=>{
+    res.json('hi')
 })
 
 app.listen(PORT, () => {
